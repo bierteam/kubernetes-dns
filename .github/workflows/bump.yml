@@ -7,9 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Bump version and push tag
-      uses: darioblanco/bump-semver@v1.0.0
+    - uses: actions/checkout@v3
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        defaultBump: patch
+        fetch-depth: '0'
+
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
+        DEFAULT_BUMP: patch
