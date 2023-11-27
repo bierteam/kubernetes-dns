@@ -32,7 +32,7 @@ nodes = [
 kubernetesPool = {}
 # find all regexDomain records
 for record in records:
-    if record['type'] == "A" or "AAAA":
+    if record['type'] == "A" or record['type'] == "AAAA":
         if re.search(regexDomain, record['name']):
             nodes.append({"name": record['name'], "type": record['type'], "ip": record['content']})
         if record['name'] == kubernetesDomain:

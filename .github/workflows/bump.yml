@@ -1,19 +1,21 @@
 name: Bump version
+
 on:
   push:
     branches:
       - main
+
 jobs:
-  build:
+  bump:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: '0'
 
     - name: Bump version and push tag
       uses: anothrNick/github-tag-action@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.MY_TOKEN }} # not GITHUB_TOKEN because it does not trigger (other) github actions
         WITH_V: true
         DEFAULT_BUMP: patch
